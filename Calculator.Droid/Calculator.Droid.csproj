@@ -64,4 +64,10 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Calculator.Core\Calculator.Core.csproj">
+      <Project>{820A3CA5-A1C2-4D1B-BB34-C0C1A05E5448}</Project>
+      <Name>Calculator.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

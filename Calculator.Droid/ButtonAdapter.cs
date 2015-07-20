@@ -2,20 +2,13 @@
 using Android.Content;
 using Android.Views;
 using Android.Widget;
+using Calculator.Core;
 
 namespace Calculator.Droid
 {
 	public class ButtonAdapter : BaseAdapter
 	{
 		Context context;
-
-		string[] buttons = new string[] {
-			"←", "C", "±", "/",
-			"7", "8", "9", "*",
-			"4", "5", "6", "-",
-			"1", "2", "3", "+",
-			"0", ".", null, "="
-		};
 
 		public ButtonAdapter (Context context)
 		{
@@ -35,7 +28,7 @@ namespace Calculator.Droid
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
 			Button button = null;
-			string text = buttons [position];
+			string text = CalculatorButtons.All [position].Text;
 
 			if (convertView != null) {
 				button = (Button)convertView;
@@ -52,7 +45,7 @@ namespace Calculator.Droid
 		}
 
 		public override int Count {
-			get { return buttons.Length; }
+			get { return CalculatorButtons.All.Length; }
 		}
 	}
 }
