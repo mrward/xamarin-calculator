@@ -10,7 +10,7 @@ namespace Calculator.Droid
 		Context context;
 
 		string[] buttons = new string[] {
-			"<-", "C", "±", "/",
+			"←", "C", "±", "/",
 			"7", "8", "9", "*",
 			"4", "5", "6", "-",
 			"1", "2", "3", "+",
