@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
@@ -9,10 +9,12 @@ namespace Calculator.Droid
 	public class ButtonAdapter : BaseAdapter
 	{
 		Context context;
+		Action<CalculatorKey> onKeyPressed;
 
-		public ButtonAdapter (Context context)
+		public ButtonAdapter (Context context, Action<CalculatorKey> onKeyPressed)
 		{
 			this.context = context;
+			this.onKeyPressed = onKeyPressed;
 		}
 
 		public override Java.Lang.Object GetItem (int position)
@@ -28,7 +30,7 @@ namespace Calculator.Droid
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
 			Button button = null;
-			string text = CalculatorButtons.All [position].Text;
+			CalculatorButton calculatorButton = CalculatorButtons.All [position];
 
 			if (convertView != null) {
 				button = (Button)convertView;
@@ -36,8 +38,9 @@ namespace Calculator.Droid
 				button = new Button (context);
 			}
 
-			if (text != null) {
-				button.Text = text;
+			if (calculatorButton.Text != null) {
+				button.Text = calculatorButton.Text;
+				button.Click += (sender, e) => onKeyPressed (calculatorButton.Key);
 			} else {
 				button.Visibility = ViewStates.Invisible;
 			}

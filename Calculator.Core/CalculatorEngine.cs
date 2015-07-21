@@ -1,6 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 
 namespace Calculator.Core
 {
@@ -44,6 +45,21 @@ namespace Calculator.Core
 			case CalculatorKey.Zero:
 				OnNumberPressed ((int)key);
 				break;
+			case CalculatorKey.Plus:
+			case CalculatorKey.Minus:
+			case CalculatorKey.Multiply:
+			case CalculatorKey.Divide:
+				processed = OnOperationKeyPressed (key);
+				break;
+			case CalculatorKey.Point:
+				processed = OnPointKeyPressed ();
+				break;
+			case CalculatorKey.Equal:
+				processed = OnEqualKeyPressed ();
+				break;
+			case CalculatorKey.Backspace:
+				processed = OnBackspaceKeyPressed ();
+				break;
 			}
 
 			if (processed) {
@@ -72,8 +88,101 @@ namespace Calculator.Core
 
 		void OnNumberPressed (int number)
 		{
-			ResultText += number.ToString ();
+			AppendCalculationText (number.ToString ());
+		}
+
+		void AppendCalculationText (string text)
+		{
+			CalculationText += text;
+			OnCalculationTextChanged ();
+		}
+
+		bool OnOperationKeyPressed (CalculatorKey key)
+		{
+			if (keysPressed.Count == 0)
+				return false;
+			
+			if (LastKeyPressedIsOperation ()) {
+				RemoveLastKeyPressed ();
+				ReplaceLastCalculationTextCharacter (key.GetText ());
+			} else {
+				AppendCalculationText (key.GetText ());
+			}
+			return true;
+		}
+
+		bool LastKeyPressedIsOperation ()
+		{
+			if (keysPressed.Count > 0) {
+				return keysPressed [keysPressed.Count - 1].IsOperationKey ();
+			}
+			return false;
+		}
+
+		void RemoveLastKeyPressed ()
+		{
+			keysPressed.RemoveAt (keysPressed.Count - 1);
+		}
+
+		void ReplaceLastCalculationTextCharacter (string text)
+		{
+			CalculationText = CalculationText.Substring (0, CalculationText.Length - 1);
+			AppendCalculationText (text);
+		}
+
+		bool OnEqualKeyPressed ()
+		{
+			if (keysPressed.Count == 0)
+				return false;
+
+			CalculationText = "";
+			ResultText = Calculation.GetResult (keysPressed);
+
+			OnCalculationTextChanged ();
 			OnResultTextChanged ();
+
+			keysPressed.Clear ();
+
+			return false;
+		}
+
+		bool OnBackspaceKeyPressed ()
+		{
+			if (keysPressed.Count > 0) {
+				RemoveLastKeyPressed ();
+				ReplaceLastCalculationTextCharacter ("");
+			}
+			return false;
+		}
+
+		bool OnPointKeyPressed ()
+		{
+			if (keysPressed.Count == 0 || LastKeyPressedIsOperation ()) {
+				keysPressed.Add (CalculatorKey.Zero);
+				AppendCalculationText ("0.");
+				return true;
+			}
+
+			if (PointAlreadyPressedForCurrentNumber ()) {
+				return false;
+			}
+
+			AppendCalculationText (".");
+
+			return true;
+		}
+
+		bool PointAlreadyPressedForCurrentNumber ()
+		{
+			for (int i = keysPressed.Count - 1; i >= 0; --i) {
+				CalculatorKey key = keysPressed [i];
+				if (key == CalculatorKey.Point) {
+					return true;
+				} else if (key.IsOperationKey ()) {
+					return false;
+				}
+			}
+			return false;
 		}
 	}
 }

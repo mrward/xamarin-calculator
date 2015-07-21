@@ -35,6 +35,8 @@
     <Compile Include="CalculatorButton.cs" />
     <Compile Include="CalculatorButtons.cs" />
     <Compile Include="CalculatorKey.cs" />
+    <Compile Include="CalculatorKeyExtensions.cs" />
+    <Compile Include="Calculation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
