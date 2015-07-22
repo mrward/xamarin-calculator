@@ -30,6 +30,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="42" translatesAutoresizingMaskIntoConstraints="NO">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="52">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <rect key="frame" x="6" y="96" width="588" height="498"/>
+                                <cells/>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                            </collectionView>
                         </subviews>
                         <constraints>
                             <constraint id="18" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="6"/>
@@ -45,11 +56,19 @@
                             <constraint id="35" firstItem="3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom"/>
                             <constraint id="36" firstItem="3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20"/>
                             <constraint id="39" firstItem="23" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="8"/>
+                            <constraint id="45" firstItem="42" firstAttribute="top" secondItem="23" secondAttribute="bottom" constant="8"/>
+                            <constraint id="46" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="42" secondAttribute="trailing" constant="6"/>
+                            <constraint id="47" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="42" secondAttribute="trailing" constant="6"/>
+                            <constraint id="48" firstItem="42" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="6"/>
+                            <constraint id="49" firstItem="42" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="6"/>
+                            <constraint id="50" firstItem="8bC-Xf-vdC" firstAttribute="bottom" secondItem="42" secondAttribute="bottom" constant="6"/>
+                            <constraint id="51" firstItem="8bC-Xf-vdC" firstAttribute="bottom" secondItem="42" secondAttribute="bottom" constant="6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="calculationTextField" destination="3" id="name-outlet-3"/>
                         <outlet property="resultTextField" destination="23" id="name-outlet-23"/>
+                        <outlet property="buttonsCollectionView" destination="42" id="name-outlet-42"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

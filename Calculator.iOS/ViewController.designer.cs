@@ -16,6 +16,10 @@ namespace Calculator.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UICollectionView buttonsCollectionView { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITextField calculationTextField { get; set; }
 
 		[Outlet]
@@ -24,6 +28,10 @@ namespace Calculator.iOS
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (buttonsCollectionView != null) {
+				buttonsCollectionView.Dispose ();
+				buttonsCollectionView = null;
+			}
 			if (calculationTextField != null) {
 				calculationTextField.Dispose ();
 				calculationTextField = null;
