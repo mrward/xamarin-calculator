@@ -111,5 +111,9 @@
       <Project>{C143CD06-BAE1-44A6-A300-EB942CDE980A}</Project>
       <Name>Calculator.Forms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Calculator.Core\Calculator.Core.csproj">
+      <Project>{820A3CA5-A1C2-4D1B-BB34-C0C1A05E5448}</Project>
+      <Name>Calculator.Core</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
