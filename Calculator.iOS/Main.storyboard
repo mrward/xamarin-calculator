@@ -44,25 +44,18 @@
                         </subviews>
                         <constraints>
                             <constraint id="18" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="6"/>
-                            <constraint id="19" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="6"/>
                             <constraint id="20" firstItem="3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="6"/>
-                            <constraint id="21" firstItem="3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="6"/>
                             <constraint id="22" firstItem="3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom"/>
                             <constraint id="27" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="23" secondAttribute="trailing" constant="6"/>
-                            <constraint id="28" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="23" secondAttribute="trailing" constant="6"/>
                             <constraint id="30" firstItem="23" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="6"/>
-                            <constraint id="31" firstItem="23" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="6"/>
                             <constraint id="34" firstItem="3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom"/>
                             <constraint id="35" firstItem="3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom"/>
                             <constraint id="36" firstItem="3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20"/>
                             <constraint id="39" firstItem="23" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="8"/>
                             <constraint id="45" firstItem="42" firstAttribute="top" secondItem="23" secondAttribute="bottom" constant="8"/>
                             <constraint id="46" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="42" secondAttribute="trailing" constant="6"/>
-                            <constraint id="47" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="42" secondAttribute="trailing" constant="6"/>
                             <constraint id="48" firstItem="42" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="6"/>
-                            <constraint id="49" firstItem="42" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="6"/>
                             <constraint id="50" firstItem="8bC-Xf-vdC" firstAttribute="bottom" secondItem="42" secondAttribute="bottom" constant="6"/>
-                            <constraint id="51" firstItem="8bC-Xf-vdC" firstAttribute="bottom" secondItem="42" secondAttribute="bottom" constant="6"/>
                         </constraints>
                     </view>
                     <connections>
