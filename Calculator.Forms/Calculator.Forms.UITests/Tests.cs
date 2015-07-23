@@ -25,10 +25,51 @@ namespace Calculator.Forms.UITests
 			app = AppInitializer.StartApp (platform);
 		}
 
-		[Test]
-		public void AppLaunches ()
+		void TapButtons (params string[] buttonName)
 		{
-			app.Screenshot ("First screen.");
+			foreach (string name in buttonName) {
+				TapButton (name);
+			}
+		}
+
+		void TapButton (string name)
+		{
+			Func<AppQuery, AppQuery> button = c => c.Button (name);
+			app.Tap (button);
+		}
+
+		void AssertCalculationTextIs (string expected)
+		{
+			AssertTextIs ("calculationText", expected);
+		}
+
+		void AssertTextIs (string id, string expected)
+		{
+			AppResult result = app.Query (c => c.Marked (id)).Single ();
+			Assert.AreEqual (expected, result.Text);
+		}
+
+		void AssertResultTextIs (string expected)
+		{
+			AssertTextIs ("resultText", expected);
+		}
+
+		[Test]
+		public void WhenOnePlusTwoButtonsTappedThenCalculationTextIsUpdated ()
+		{
+			TapButtons ("1", "+", "2");
+			app.Screenshot ("1+2");
+
+			AssertCalculationTextIs ("1+2");
+		}
+
+		[Test]
+		public void WhenOnePlusTwoEqualsButtonsTappedThenResultIsThree ()
+		{
+			TapButtons ("1", "+", "2", "=");
+			app.Screenshot ("1+2=3");
+
+			AssertResultTextIs ("3");
 		}
 	}
 }

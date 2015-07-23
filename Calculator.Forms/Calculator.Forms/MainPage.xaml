@@ -27,14 +27,14 @@
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 		<Label
-			x:Name="calculationText"
+			StyleId="calculationText"
 			Grid.Row="0"
 			Grid.ColumnSpan="5"
 			Text="{Binding Path=CalculationText}"
 			Font="Large"
 			HorizontalOptions="EndAndExpand" />
 		<Label
-			x:Name="resultText"
+			StyleId="resultText"
 			Grid.Row="1"
 			Grid.ColumnSpan="5"
 			Text="{Binding Path=ResultText}"
