@@ -32,10 +32,10 @@ namespace Calculator.Droid
 
 		void CalculatorPropertyChanged (object sender, PropertyChangedEventArgs e)
 		{
-			var calculationTextView = FindViewById<TextView> (Resource.Id.calculationTextView);
+			var calculationTextView = FindViewById<TextView> (Resource.Id.calculationText);
 			calculationTextView.Text = calculatorEngine.CalculationText;
 
-			var resultTextView = FindViewById<TextView> (Resource.Id.resultTextView);
+			var resultTextView = FindViewById<TextView> (Resource.Id.resultText);
 			resultTextView.Text = calculatorEngine.ResultText;
 		}
 

@@ -7,14 +7,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/calculationTextView"
+        android:id="@+id/calculationText"
         tools:text="1+2+3"
         android:gravity="right" />
     <TextView xmlns:tools="http://schemas.android.com/tools"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/resultTextView"
+        android:id="@+id/resultText"
         tools:text="=6"
         android:gravity="right" />
     <GridView
