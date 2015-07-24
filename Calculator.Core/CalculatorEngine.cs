@@ -12,6 +12,8 @@ namespace Calculator.Core
 
 		public CalculatorEngine ()
 		{
+			CalculationText = "";
+			ResultText = "";
 		}
 
 		public string CalculationText { get; private set; }
