@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
 
 namespace Calculator.Core
 {
@@ -43,7 +44,7 @@ namespace Calculator.Core
 			case CalculatorKey.Two:
 			case CalculatorKey.One:
 			case CalculatorKey.Zero:
-				OnNumberPressed ((int)key);
+				processed = true;
 				break;
 			case CalculatorKey.Plus:
 			case CalculatorKey.Minus:
@@ -64,6 +65,7 @@ namespace Calculator.Core
 
 			if (processed) {
 				keysPressed.Add (key);
+				GenerateCalculationText ();
 			}
 		}
 
@@ -86,27 +88,13 @@ namespace Calculator.Core
 			OnPropertyChanged ("ResultText");
 		}
 
-		void OnNumberPressed (int number)
-		{
-			AppendCalculationText (number.ToString ());
-		}
-
-		void AppendCalculationText (string text)
-		{
-			CalculationText += text;
-			OnCalculationTextChanged ();
-		}
-
 		bool OnOperationKeyPressed (CalculatorKey key)
 		{
 			if (keysPressed.Count == 0)
 				return false;
-			
+
 			if (LastKeyPressedIsOperation ()) {
 				RemoveLastKeyPressed ();
-				ReplaceLastCalculationTextCharacter (key.GetText ());
-			} else {
-				AppendCalculationText (key.GetText ());
 			}
 			return true;
 		}
@@ -122,12 +110,6 @@ namespace Calculator.Core
 		void RemoveLastKeyPressed ()
 		{
 			keysPressed.RemoveAt (keysPressed.Count - 1);
-		}
-
-		void ReplaceLastCalculationTextCharacter (string text)
-		{
-			CalculationText = CalculationText.Substring (0, CalculationText.Length - 1);
-			AppendCalculationText (text);
 		}
 
 		bool OnEqualKeyPressed ()
@@ -150,7 +132,7 @@ namespace Calculator.Core
 		{
 			if (keysPressed.Count > 0) {
 				RemoveLastKeyPressed ();
-				ReplaceLastCalculationTextCharacter ("");
+				GenerateCalculationText ();
 			}
 			return false;
 		}
@@ -159,15 +141,12 @@ namespace Calculator.Core
 		{
 			if (keysPressed.Count == 0 || LastKeyPressedIsOperation ()) {
 				keysPressed.Add (CalculatorKey.Zero);
-				AppendCalculationText ("0.");
 				return true;
 			}
 
 			if (PointAlreadyPressedForCurrentNumber ()) {
 				return false;
 			}
-
-			AppendCalculationText (".");
 
 			return true;
 		}
@@ -183,6 +162,16 @@ namespace Calculator.Core
 				}
 			}
 			return false;
+		}
+
+		void GenerateCalculationText ()
+		{
+			var builder = new StringBuilder ();
+			foreach (CalculatorKey key in keysPressed) {
+				builder.Append (key.GetText ());
+			}
+			CalculationText = builder.ToString ();
+			OnCalculationTextChanged ();
 		}
 	}
 }
