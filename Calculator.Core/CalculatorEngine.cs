@@ -63,6 +63,9 @@ namespace Calculator.Core
 			case CalculatorKey.Backspace:
 				processed = OnBackspaceKeyPressed ();
 				break;
+			case CalculatorKey.PlusMinus:
+				processed = OnPlusMinusPressed ();
+				break;
 			}
 
 			if (processed) {
@@ -95,6 +98,9 @@ namespace Calculator.Core
 			if (keysPressed.Count == 0)
 				return false;
 
+			if (LastKeyPressedIsPlusMinus ())
+				return false;
+
 			if (LastKeyPressedIsOperation ()) {
 				RemoveLastKeyPressed ();
 			}
@@ -109,6 +115,14 @@ namespace Calculator.Core
 			return false;
 		}
 
+		bool LastKeyPressedIsPlusMinus ()
+		{
+			if (keysPressed.Count > 0) {
+				return keysPressed [keysPressed.Count - 1] == CalculatorKey.PlusMinus;
+			}
+			return false;
+		}
+
 		void RemoveLastKeyPressed ()
 		{
 			keysPressed.RemoveAt (keysPressed.Count - 1);
@@ -119,7 +133,7 @@ namespace Calculator.Core
 			if (keysPressed.Count == 0)
 				return false;
 
-			if (LastKeyPressedIsOperation ())
+			if (LastKeyPressedIsOperation () || LastKeyPressedIsPlusMinus ())
 				return false;
 
 			CalculationText = "";
@@ -181,6 +195,42 @@ namespace Calculator.Core
 			}
 			CalculationText = builder.ToString ().TrimEnd ();
 			OnCalculationTextChanged ();
+		}
+
+		bool OnPlusMinusPressed ()
+		{
+			if (keysPressed.Count == 0)
+				return true;
+
+			CalculatorKey lastKeyPressed = keysPressed [keysPressed.Count - 1];
+			if (lastKeyPressed == CalculatorKey.PlusMinus) {
+				RemoveLastKeyPressed ();
+				GenerateCalculationText ();
+				return false;
+			}
+
+			if (lastKeyPressed.IsNumber ()) {
+				int index = FindStartOfCurrentNumber ();
+				if (keysPressed [index] == CalculatorKey.PlusMinus) {
+					keysPressed.RemoveAt (index);
+				} else {
+					keysPressed.Insert (index, CalculatorKey.PlusMinus);
+				}
+				GenerateCalculationText ();
+				return false;
+			}
+			return true;
+		}
+
+		int FindStartOfCurrentNumber ()
+		{
+			for (int i = keysPressed.Count - 1; i >= 0; --i) {
+				CalculatorKey key = keysPressed [i];
+				if (key.IsOperationKey ()) {
+					return i + 1;
+				}
+			}
+			return 0;
 		}
 	}
 }

@@ -12,6 +12,19 @@ namespace Calculator.Core
 			CalculatorKey.Minus
 		};
 
+		static readonly CalculatorKey[] numberKeys = new CalculatorKey[] {
+			CalculatorKey.Nine,
+			CalculatorKey.Eight,
+			CalculatorKey.Seven,
+			CalculatorKey.Six,
+			CalculatorKey.Five,
+			CalculatorKey.Four,
+			CalculatorKey.Three,
+			CalculatorKey.Two,
+			CalculatorKey.One,
+			CalculatorKey.Zero
+		};
+
 		public static string GetText (this CalculatorKey key)
 		{
 			switch (key) {
@@ -36,6 +49,8 @@ namespace Calculator.Core
 				return "/";
 			case CalculatorKey.Point:
 				return ".";
+			case CalculatorKey.PlusMinus:
+				return "-";
 			default:
 				return "";
 			}
@@ -44,6 +59,11 @@ namespace Calculator.Core
 		public static bool IsOperationKey (this CalculatorKey key)
 		{
 			return operationKeys.Contains (key);
+		}
+
+		public static bool IsNumber (this CalculatorKey key)
+		{
+			return numberKeys.Contains (key);
 		}
 	}
 }
