@@ -133,6 +133,15 @@ namespace Calculator.Core.Tests
 
 			Assert.AreEqual ("1 +", calculatorEngine.CalculationText);
 		}
+
+		[Test]
+		public void OnePlusEqualsShouldNotThrowException ()
+		{
+			PressKeys (CalculatorKey.One, CalculatorKey.Plus, CalculatorKey.Equal);
+
+			Assert.AreEqual ("1 +", calculatorEngine.CalculationText);
+			Assert.AreEqual ("", calculatorEngine.ResultText);
+		}
 	}
 }
 

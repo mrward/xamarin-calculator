@@ -119,6 +119,9 @@ namespace Calculator.Core
 			if (keysPressed.Count == 0)
 				return false;
 
+			if (LastKeyPressedIsOperation ())
+				return false;
+
 			CalculationText = "";
 			ResultText = Calculation.GetResult (keysPressed);
 
