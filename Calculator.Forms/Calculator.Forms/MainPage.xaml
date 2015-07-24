@@ -65,6 +65,8 @@
 			Grid.Row="2"
 			Grid.Column="2"
 			Font="Large"
+			Command="{Binding KeyPressCommand}"
+			CommandParameter="PlusMinus" 
 			Text="±" />
 		<Button
 			Grid.Row="2"
