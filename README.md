@@ -24,7 +24,7 @@ Two solutions - One for Xamarin.Forms and one for both Xamarin.Android and Xamar
  * Calculator.iOS - Xamarin.iOS calculator project.
  * Calculator.UITests - Xamarin.UITest project for iOS and Android projects.
 
-### Forms projects:
+### Forms Projects
 
  * Calculator.Core - PCL project that contains calculator logic. Shared with both solutions.
  * Calculator.Forms - PCL project for Xamarin.Forms.
