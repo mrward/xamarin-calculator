@@ -60,7 +60,7 @@ namespace Calculator.Forms.UITests
 			TapButtons ("1", "+", "2");
 			app.Screenshot ("1+2");
 
-			AssertCalculationTextIs ("1+2");
+			AssertCalculationTextIs ("1 + 2");
 		}
 
 		[Test]

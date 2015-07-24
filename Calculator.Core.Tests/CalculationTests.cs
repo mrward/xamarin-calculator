@@ -75,7 +75,7 @@ namespace Calculator.Core.Tests
 		{
 			PressKeys (CalculatorKey.One, CalculatorKey.Plus, CalculatorKey.Two);
 
-			Assert.AreEqual ("1+2", calculatorEngine.CalculationText);
+			Assert.AreEqual ("1 + 2", calculatorEngine.CalculationText);
 		}
 
 		[Test]
@@ -124,6 +124,14 @@ namespace Calculator.Core.Tests
 
 			Assert.AreEqual ("", calculatorEngine.CalculationText);
 			Assert.AreEqual ("", calculatorEngine.ResultText);
+		}
+
+		[Test]
+		public void OnePlusTwoThenBackspace ()
+		{
+			PressKeys (CalculatorKey.One, CalculatorKey.Plus, CalculatorKey.Two, CalculatorKey.Backspace);
+
+			Assert.AreEqual ("1 +", calculatorEngine.CalculationText);
 		}
 	}
 }

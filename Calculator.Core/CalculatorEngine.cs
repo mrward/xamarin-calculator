@@ -170,9 +170,13 @@ namespace Calculator.Core
 		{
 			var builder = new StringBuilder ();
 			foreach (CalculatorKey key in keysPressed) {
-				builder.Append (key.GetText ());
+				if (key.IsOperationKey ()) {
+					builder.AppendFormat (" {0} ", key.GetText ());
+				} else {
+					builder.Append (key.GetText ());
+				}
 			}
-			CalculationText = builder.ToString ();
+			CalculationText = builder.ToString ().TrimEnd ();
 			OnCalculationTextChanged ();
 		}
 	}
